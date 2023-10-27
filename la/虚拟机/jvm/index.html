@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  dir="ltr"
+  
+><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Jvm | 春江花朝秋月夜</title>
+
+<meta name="generator" content="Hugo Eureka 0.9.3" />
+<link rel="stylesheet" href="/css/eureka.min.9cec6350e37e534b0338fa9a085bf06855de3b0f2dcf857e792e5e97b07ea905d4d5513db554cbc26a9c3da622bae92d.css">
+<script defer src="/js/eureka.min.fa9a6bf6d7a50bb635b4cca7d2ba5cf3dfb095ae3798773f1328f7950028b48c17d06276594e1b5f244a25a6c969a705.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&amp;family=Noto&#43;Serif&#43;SC:wght@400;600;700&amp;display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/base16/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"
+   crossorigin></script>
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/languages/dart.min.js"
+     crossorigin></script>
+<link rel="stylesheet" href="/css/highlightjs.min.2958991528e43eb6fc9b8c4f2b8e052f79c4010718e1d1e888a777620e9ee63021c2c57ec7417a3108019bb8c41943e6.css" media="print" onload="this.media='all';this.onload=null">
+
+
+<script defer type="text/javascript" src="/js/fontawesome.min.f14def4f6943de5b19b19c02e239b98c8cc6a8fe66b6828a21da7c0e9d405df8364cab68aa637c3bbe735eb7c325aa3c.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+   integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js" 
+  integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+   integrity="sha384-&#43;XBljXPPiv&#43;OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js" 
+  integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0"  crossorigin></script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="/img/author_hu46370d4ccd3481872546da16224d0daa_1972225_32x32_fill_box_center_3.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/author_hu46370d4ccd3481872546da16224d0daa_1972225_180x180_fill_box_center_3.png">
+
+<meta name="description"
+  content="介绍了JVM的前置基础知识">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Las",
+      "item":"/la/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"Jvm",
+      "item":"/la/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/la/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/"
+    },
+    "headline": "Jvm | 春江花朝秋月夜",
+    "image": "/la/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/featured.png",
+    "datePublished": "2023-10-12T23:51:04+08:00",
+    "dateModified": "2023-10-12T23:51:04+08:00",
+    "wordCount":  311 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "春江花朝秋月夜",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "/img/author.png"
+        }
+        },
+    "description": "介绍了JVM的前置基础知识"
+}
+</script><meta property="og:title" content="Jvm | 春江花朝秋月夜" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="/img/author.png">
+
+
+<meta property="og:url" content="/la/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/" />
+
+
+
+<meta property="og:description" content="介绍了JVM的前置基础知识" />
+
+
+
+<meta property="og:locale" content="en" />
+
+
+
+
+<meta property="og:site_name" content="春江花朝秋月夜" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2023-10-12T23:51:04&#43;08:00" />
+
+
+<meta property="article:modified_time" content="2023-10-12T23:51:04&#43;08:00" />
+
+
+
+<meta property="article:section" content="la" />
+
+
+<meta property="article:tag" content="虚拟机" />
+
+
+
+
+
+<meta property="og:see_also" content="/la/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" />
+
+
+
+
+  <body class="flex min-h-screen flex-col">
+    <header
+      class="min-h-16 pl-scrollbar bg-secondary-bg fixed z-50 flex w-full items-center shadow-sm"
+    >
+      <div class="mx-auto w-full max-w-screen-xl"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="me-6 text-primary-text text-xl font-bold">春江花朝秋月夜</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/tags/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">标签</a>
+            <a href="/la/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  me-4">笔记</a>
+            <a href="/info" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">关于</a>
+            <a href="/friend/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">朋友</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col start-0 md:start-auto end-auto md:end-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+    </header>
+    <main class="grow pt-16">
+        <div class="pl-scrollbar">
+          <div class="mx-auto w-full max-w-screen-xl lg:px-4 xl:px-8">
+  
+  
+  <div class="grid grid-cols-2 gap-4 lg:grid-cols-8 lg:pt-12">
+    <div
+      class="lg:col-start-2 bg-secondary-bg col-span-2 rounded px-6 py-8 lg:col-span-6"
+    >
+      <article class="prose">
+  <h1 class="mb-4">Jvm</h1>
+
+  <div
+  class="text-tertiary-text not-prose mt-2 flex flex-row flex-wrap items-center"
+>
+  <div class="me-6 my-2">
+    <i class="fas fa-calendar me-1"></i>
+    <span
+      >2023-10-12</span
+    >
+  </div>
+  <div class="me-6 my-2">
+    <i class="fas fa-clock me-1"></i>
+    <span>2 min read</span>
+  </div>
+
+  
+
+  
+</div>
+
+
+  
+  
+    <img src="/la/%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm/featured.png" class="w-full" alt="Featured Image">
+  
+
+  <h1 id="概述">概述</h1>
+<p>JVM是模拟物理机实现的将javac编译为.class文件，jvm支持平台无关性。
+class文件通过类加载器-》解释器-》硬件沟通</p>
+<p>Jvm基于HotSpot虚拟机架构同时也是基于栈实现的。与C语言不同，不同架构的操作系统编译输出的文件不同，jvm编译后产生的
+文件完全相同。</p>
+<p>由于执行一段程序需要不断地编译和反编译，将热点执行的代买柜内为热点代码再转换为机器码提高执行效率。同时jdk1.2之后支持使用JNI来
+调用C/C++代码提升代码执行效率</p>
+<h2 id="指令">指令</h2>
+<blockquote>
+<p>基本数据结构：堆栈+队列</p>
+</blockquote>
+<p>常见的编译命令：</p>
+<blockquote>
+<p>javap -g :vars xxx.java</p>
+<p>反编译：
+javap -v .class文件地址</p>
+</blockquote>
+<p><img src="../img/img.png" alt="反编译"></p>
+<p>反编译后的代码栈顶元素作为操作数，当需要保存变量的时候，进入队列</p>
+<p>部分变量某些关键字无法保存将会保存到常量池里面。例如bipush只支持单字节数据</p>
+<h2 id="环境部署">环境部署</h2>
+<p>Linux下下载相关依赖</p>
+<pre><code class="language-shell">sudo yum install build-essential libxrender-dev xorg-dev libasound2-dev libcups2-dev gawk zip libxtst-dev libxi-dev libxt-dev gobjc
+</code></pre>
+<p>gcc 环境：</p>
+<p><img src="../img/img_1.png" alt="gcc"></p>
+<p>make</p>
+<p><img src="../img/img_2.png" alt="make"></p>
+<p>jdk环境：open-jdk8</p>
+<p>Linux下编译结果：</p>
+<p><img src="../img/img_3.png" alt="jetbrains gateway"></p>
+<p>编译Hello World：</p>
+<p><img src="../img/img_4.png" alt="hello"></p>
+<h3 id="手动编译jdk8部分">手动编译jdk8部分</h3>
+<div style="position:relative; padding-bottom:75%; width:100%; height:0">
+  <iframe
+          src="//player.bilibili.com/player.html?bvid=BV1Er4y1r7as&page=4"
+          scrolling="no"
+          border="0"
+          frameborder="no"
+          framespacing="0"
+          allowfullscreen="true"
+          style="position:absolute; height: 100%; width: 100%;"
+  >
+  </iframe>
+</div>
+
+<h2 id="jvm内存管理">JVM内存管理</h2>
+<blockquote>
+<p>C/C++开发中，我们经常通过使用申请内存的方式来创建对象或是存放某些数据，但是这样也带来了一些额外的问题，我们要在何时释放这些内存，怎么才能使得内存的使用最高效，因此，内存管
+理是一个非常严肃的问题。</p>
+</blockquote>
+<pre><code class="language-c">#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main(){
+    //动态申请4个int大小的内存空间
+    int* memory = malloc(sizeof(int) * 4);
+    //修改第一个int空间的值
+    memory[0] = 10;
+    //修改第二个int空间的值
+    memory[1] = 2;
+    //遍历内存区域中所有的值
+    for (int i = 0;i &lt; 4;i++){
+        printf(&quot;%d &quot;, memory[i]);
+    }
+    //释放指针所指向的内存区域
+    free(memory);
+    //最后将指针赋值为NULL
+    memory = NULL;
+}
+</code></pre>
+<blockquote>
+<p>一旦出现内存问题，我们就无法像C/C++那样对所管理的内存进行合理地处理，因为所有的内存操作都是由JVM在进行，只有了解了JVM的内存管理机制，我们才能够在出现内存相关问题时找到解决方案。</p>
+</blockquote>
+<h4 id="jni">JNI</h4>
+<p>调用本地方法，调用C语言，关键字native,通过静态代码块调用C/C++的实现部分</p>
+<pre><code class="language-latex">    public static void main(String[] args) {
+        System.out.println(sum(1,2));
+    }
+
+    private static native int sum(int a, int b);//原生的方法不可以具有函数实现
+</code></pre>
+<p>内存区域划分</p>
+<p><img src="../img/img_5.png" alt="内存"></p>
+<ul>
+<li>内存区域划分为：方法区（线程共享），堆（线程共享），虚拟机栈，本地方法栈，程序计数器</li>
+<li>方法区和堆栈随JVM生消，虚拟机栈，本地方法栈，程序计数器不共享彼此</li>
+</ul>
+<p>创新作业：40页创新计划书，电子档2份，纸质档1份
+商业模式和团队，按照第8章和第7章模式，12周周五交-&gt;老师办公室</p>
+<ul>
+<li>
+<p>程序计数器 ：作为内存地址，每个地址指向下一条即将指令执行，自动更新，在jvm字节码解释器工作时改变时改变值确定指令位置    public static void main(String[] args) {
+System.out.println(sum(1,2));
+}</p>
+<p>private static native int sum(int a, int b);//原生的方法不可以具有函数实现</p>
+</li>
+<li>
+<p>虚拟机栈 （关键部分），内次当java虚拟机创建的时候即可同步一个栈帧（栈里面的元素），栈帧包含了当前方法的一些元素信息：（局部变量表，操作数栈，动态链接，方法出口）</p>
+</li>
+</ul>
+<h3 id="虚拟机栈">虚拟机栈</h3>
+<p><img src="../imgs/img.png" alt="img"></p>
+<p>每个栈帧保存一个可以<strong>指向当前方法所在类 的常量池</strong>，目的是：当前方法8中如果需要调用其他方法的时候，能够从运行时常量池中找到对应的符号引用，然后将符号引用转换为直接引用，
+然后就能直接调用对应方法，这就是动态链接</p>
+<p><img src="../imgs/img_1.png" alt="img">
+在虚拟机栈里面执行的行为就是对方法不断压栈出栈的过程，只有当所有方法出栈之后才可以执行主函数栈</p>
+<h3 id="堆">堆</h3>
+<p>作为虚拟机中最大的一块内存空间，区域职责是作为存放对象和数组，垃圾回收器也作用于此</p>
+<div style="position:relative; padding-bottom:75%; width:100%; height:0">
+  <iframe
+          src="//player.bilibili.com/player.html?bvid=BV1Er4y1r7as&page=8"
+          scrolling="no"
+          border="0"
+          frameborder="no"
+          framespacing="0"
+          allowfullscreen="true"
+          style="position:absolute; height: 100%; width: 100%;"
+  >
+  </iframe>
+</div>
+
+<h3 id="方法区重点">方法区（重点）</h3>
+<p>所有程序共享区域，存储类信息，静态变量，动态编译缓存部分，分为两大部分：类信息表+运行时常量池
+<img src="../imgs/img_2.png" alt="img"></p>
+<p>编译生成的常量也可以加入常量池里面。</p>
+<blockquote>
+<p>面试题：String的常量池，常量池优化</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<pre><code class="language-latex">String a=&quot;I am a student&quot;;
+//        String b=&quot;I am a student&quot;;
+//        String a=new String(&quot;I am a student&quot;);
+//        String b=new String(&quot;I am a student&quot;);
+String a=new String(&quot;I am &quot;)+new String(&quot;a student&quot;);
+String b=new String(&quot;I am &quot;)+new String(&quot;a student&quot;);
+System.out.println(a.intern()==b.intern());
+System.out.println(a.equals(b));
+
+</code></pre>
+<h4 id="new方式">new方式</h4>
+<pre><code class="language-latex">public static void main(String[] args) {
+    String str1 = new String(&quot;abc&quot;);
+    String str2 = new String(&quot;abc&quot;);
+
+    System.out.println(str1 == str2);
+    System.out.println(str1.equals(str2));
+}
+%使用==判断时，比较地址得到的结果false
+%而使用equals时因为比较的是值，所以得到true
+</code></pre>
+<h4 id="直接方式">直接方式</h4>
+<pre><code class="language-latex">public static void main(String[] args) {
+    String str1 = &quot;abc&quot;;
+    String str2 = &quot;abc&quot;;
+
+    System.out.println(str1 == str2);
+    System.out.println(str1.equals(str2));
+}
+%是因为我们直接使用双引号赋值
+%会先在常量池中查找是否存在相同的字符串，若存在，则将引用直接指向该字符串；
+%若不存在，则在常量池中生成一个字符串，再将引用指向该字符串：
+</code></pre>
+<p><img src="../imgs/img_3.png" alt="img"></p>
+<h4 id="intern方法native方法底层实现是c">intern方法(native方法。底层实现是C++)</h4>
+<pre><code class="language-latex">public static void main(String[] args) {
+    //不能直接写&quot;abc&quot;，双引号的形式，写了就直接在常量池里面吧abc创好了
+    String str1 = new String(&quot;ab&quot;)+new String(&quot;c&quot;);
+    String str2 = new String(&quot;ab&quot;)+new String(&quot;c&quot;);
+
+    System.out.println(str1.intern() == str2.intern());
+    System.out.println(str1.equals(str2));
+}
+</code></pre>
+<p><img src="../imgs/img_4.png" alt="img"></p>
+<ul>
+<li>（线程独有）程序计数器：保存当前程序的执行位置。</li>
+<li>（线程独有）虚拟机栈：通过栈帧，多线程里面的markword就维护在这里，
+来维持方法调用顺序，帮助控制程序有序运行。</li>
+<li>（线程独有）本地方法栈：同上，作用与本地方法。</li>
+<li>堆：所有的对象和数组都在这里保存。</li>
+<li>方法区：类信息、即时编译器的代码缓存、运行时常量池。</li>
+</ul>
+<h3 id="内存爆炸和爆栈">内存爆炸和爆栈</h3>
+<pre><code class="language-latex"> int[]arr=new int[Integer.MAX_VALUE];
+</code></pre>
+<p>下面来个重磅的哈哈，直接爆栈4个G</p>
+<pre><code class="language-latex">   static class Test{ }
+
+        public static void main(String[] args) {
+            List&lt;Test&gt; list = new ArrayList&lt;&gt;();
+            while (true){
+                list.add(new Test());    //无限创建Test对象并丢进List中
+            }
+
+        }
+</code></pre>
+<p><img src="../imgs/img_5.png" alt="img"></p>
+<p>好家伙，我这里直接new了一亿个Test对象
+<img src="../imgs/img_6.png" alt="img"></p>
+<div style="position:relative; padding-bottom:75%; width:100%; height:0">
+  <iframe
+          src="//player.bilibili.com/player.html?bvid=BV1Er4y1r7as&page=10"
+          scrolling="no"
+          border="0"
+          frameborder="no"
+          framespacing="0"
+          allowfullscreen="true"
+          style="position:absolute; height: 100%; width: 100%;"
+  >
+  </iframe>
+</div>
+
+<p>虚拟机栈是有限制的，无线递归压栈将会导致虚拟机栈爆炸</p>
+<h4 id="申请堆外内存">申请堆外内存</h4>
+<pre><code class="language-latex"> Field unsafeField= Unsafe.class.getDeclaredFields()[0];
+ unsafeField.setAccessible(true);
+ Unsafe unsafe= (Unsafe) unsafeField.get(null);
+ long memory = unsafe.allocateMemory(4);
+
+ unsafe.putInt(memory,123);
+ System.out.println(unsafe.getAddress(memory));
+</code></pre>
+<h4 id="获取类中定义的属性">获取类中定义的属性</h4>
+<pre><code class="language-java">Class.getField(properties name) //获取当前类的属性
+Class.getSuperClass().getDeclaredField(properties name) //获取当前类的父类的信息
+</code></pre>
+
+</article>
+
+
+      
+        <div class="my-4">
+    
+    <a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 me-2 hover:text-eureka">#虚拟机</a>
+    
+</div>
+      
+
+      
+
+
+
+      
+
+      
+  <div
+    class="-mx-2 mt-4 flex flex-col border-t px-2 pt-4 md:flex-row md:justify-between"
+  >
+    <div>
+      
+        <span class="text-primary-text block font-bold"
+          >Previous</span
+        >
+        <a href="/la/latex/" class="block">Latex语法</a>
+      
+    </div>
+    <div class="mt-4 md:mt-0 md:text-right">
+      
+        <span class="text-primary-text block font-bold">下一篇</span>
+        <a href="/la/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" class="block">垃圾回收机制</a>
+      
+    </div>
+  </div>
+
+
+      
+
+
+
+    </div>
+    
+
+    
+    
+      <div
+        class="lg:col-start-2 bg-secondary-bg prose col-span-2 rounded p-6 lg:col-span-6"
+      >
+        <h3>See Also</h3>
+        
+          <a href="/la/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" class="no-underline">垃圾回收机制</a>
+          <br />
+        
+      </div>
+    
+  </div>
+
+  
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        hljs.highlightAll();
+      });
+    </script>
+
+          </div>
+        </div>
+      
+    </main>
+    <footer class="pl-scrollbar">
+      <div class="mx-auto w-full max-w-screen-xl"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2023 <a href="https://todreamr.github.com/">春江花朝秋月夜</a> and <a href="https://www.ruiqima.com/">MA Ruiqi</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+    </footer>
+  </body>
+</html>

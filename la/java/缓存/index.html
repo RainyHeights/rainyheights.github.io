@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  dir="ltr"
+  
+><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Redis | 春江花朝秋月夜</title>
+
+<meta name="generator" content="Hugo Eureka 0.9.3" />
+<link rel="stylesheet" href="/css/eureka.min.9cec6350e37e534b0338fa9a085bf06855de3b0f2dcf857e792e5e97b07ea905d4d5513db554cbc26a9c3da622bae92d.css">
+<script defer src="/js/eureka.min.fa9a6bf6d7a50bb635b4cca7d2ba5cf3dfb095ae3798773f1328f7950028b48c17d06276594e1b5f244a25a6c969a705.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&amp;family=Noto&#43;Serif&#43;SC:wght@400;600;700&amp;display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/base16/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"
+   crossorigin></script>
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/languages/dart.min.js"
+     crossorigin></script>
+<link rel="stylesheet" href="/css/highlightjs.min.2958991528e43eb6fc9b8c4f2b8e052f79c4010718e1d1e888a777620e9ee63021c2c57ec7417a3108019bb8c41943e6.css" media="print" onload="this.media='all';this.onload=null">
+
+
+<script defer type="text/javascript" src="/js/fontawesome.min.f14def4f6943de5b19b19c02e239b98c8cc6a8fe66b6828a21da7c0e9d405df8364cab68aa637c3bbe735eb7c325aa3c.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+   integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js" 
+  integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+   integrity="sha384-&#43;XBljXPPiv&#43;OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js" 
+  integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0"  crossorigin></script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="/img/author_hu46370d4ccd3481872546da16224d0daa_1972225_32x32_fill_box_center_3.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/author_hu46370d4ccd3481872546da16224d0daa_1972225_180x180_fill_box_center_3.png">
+
+<meta name="description"
+  content="介绍了并发环境下Redis的解决方案">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Las",
+      "item":"/la/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"Redis",
+      "item":"/la/java/%E7%BC%93%E5%AD%98/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/la/java/%E7%BC%93%E5%AD%98/"
+    },
+    "headline": "Redis | 春江花朝秋月夜",
+    "image": "/la/java/%E7%BC%93%E5%AD%98/featured.png",
+    "datePublished": "2023-10-03T20:31:04+08:00",
+    "dateModified": "2023-10-03T20:31:04+08:00",
+    "wordCount":  321 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "春江花朝秋月夜",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "/img/author.png"
+        }
+        },
+    "description": "介绍了并发环境下Redis的解决方案"
+}
+</script><meta property="og:title" content="Redis | 春江花朝秋月夜" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="/img/author.png">
+
+
+<meta property="og:url" content="/la/java/%E7%BC%93%E5%AD%98/" />
+
+
+
+<meta property="og:description" content="介绍了并发环境下Redis的解决方案" />
+
+
+
+<meta property="og:locale" content="en" />
+
+
+
+
+<meta property="og:site_name" content="春江花朝秋月夜" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2023-10-03T20:31:04&#43;08:00" />
+
+
+<meta property="article:modified_time" content="2023-10-03T20:31:04&#43;08:00" />
+
+
+
+<meta property="article:section" content="la" />
+
+
+<meta property="article:tag" content="缓存" />
+
+
+
+
+
+
+  <body class="flex min-h-screen flex-col">
+    <header
+      class="min-h-16 pl-scrollbar bg-secondary-bg fixed z-50 flex w-full items-center shadow-sm"
+    >
+      <div class="mx-auto w-full max-w-screen-xl"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="me-6 text-primary-text text-xl font-bold">春江花朝秋月夜</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/tags/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">标签</a>
+            <a href="/la/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  me-4">笔记</a>
+            <a href="/info" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">关于</a>
+            <a href="/friend/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">朋友</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col start-0 md:start-auto end-auto md:end-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+    </header>
+    <main class="grow pt-16">
+        <div class="pl-scrollbar">
+          <div class="mx-auto w-full max-w-screen-xl lg:px-4 xl:px-8">
+  
+  
+  <div class="grid grid-cols-2 gap-4 lg:grid-cols-8 lg:pt-12">
+    <div
+      class="lg:col-start-2 bg-secondary-bg col-span-2 rounded px-6 py-8 lg:col-span-6"
+    >
+      <article class="prose">
+  <h1 class="mb-4">Redis</h1>
+
+  <div
+  class="text-tertiary-text not-prose mt-2 flex flex-row flex-wrap items-center"
+>
+  <div class="me-6 my-2">
+    <i class="fas fa-calendar me-1"></i>
+    <span
+      >2023-10-03</span
+    >
+  </div>
+  <div class="me-6 my-2">
+    <i class="fas fa-clock me-1"></i>
+    <span>2 min read</span>
+  </div>
+
+  
+
+  
+</div>
+
+
+  
+  
+    <img src="/la/java/%E7%BC%93%E5%AD%98/featured.png" class="w-full" alt="Featured Image">
+  
+
+  <h2 id="redis学习">Redis学习：</h2>
+<h3 id="通用命令">通用命令</h3>
+<p>不要在主节点用：keys param 命令来查询，这查询速率很慢，单线程将会被阻塞</br>
+del param（可以是多个参数） :删除指定的key</br>
+exists param(判断key是否存在)</br>
+expire key time :设置有效期时间</br>
+ttl key :查看key的有效期</br></p>
+<h3 id="string类型">String类型</h3>
+<p>最简单的Redis数据类型，value：string,int,float；最大空间不超过512M</br>
+set key value
+get key</p>
+<p>Mset 批量 添加key-value</p>
+<p>Mget批量获取</p>
+<p>数值类型：incr ：让变量自增加一</p>
+<p>incrby  num：按照步长增加</p>
+<p>setnx:不存在 key才可以添加这个key</p>
+<h3 id="如何区分不同的key">如何区分不同的key？</h3>
+<p>利用层级结构来表明table，以后的大部分业务都是用层级结构来展现和布局的！</p>
+<h3 id="hash类型">Hash类型</h3>
+<p>哈希类型，也叫做散列，Hash的value是一个无须字典，类似于HashMap的结构。</p>
+<p>具有field这一个字段，这是不一样的。</p>
+<h3 id="list类型">List类型</h3>
+<p>类似于 LinkedList(也就是双向链表)</p>
+<ul>
+<li>有序</li>
+<li>元素可重复</li>
+<li>插入删除快</li>
+<li>查询速度一般</li>
+</ul>
+<p>Lpush key element：向左侧插入元素 返回列表长度，相应的向右边：Rpush key element</p>
+<p>Lpop key:移除左侧第一个元素，没有则返回nil</p>
+<p>Blop/Brpop key times:阻塞队列的插入 ,加上阻塞时间</p>
+<p>如何用List来模拟栈？</p>
+<p>入口和出口一起。Lpush和Lpop</p>
+<p>模拟队列？</p>
+<p>入口和出口不在一起。Lpush和Rpop</p>
+<p>模拟阻塞队列？</p>
+<p>入口出口不在一边，取的时候用阻塞Brpop/Blpop</p>
+<h3 id="set类型">Set类型</h3>
+<p>类似于HashSet，可以看作是value为null的hashMap。</p>
+<p>Sadd key member:添加一个或多个元素。</p>
+<p>Srem key member:删除元素</p>
+<p>Smembers：获取所有元素</p>
+<p>Sinter key1 key2:求取交集</p>
+<p>Sdiff：求差集</p>
+<p>Sunion:求并集</p>
+<p>Scard:求元素个数</p>
+<p>Sismenber key member:是否是成员</p>
+<h3 id="sortedset">SortedSet</h3>
+<p><img src="md/img_3.png" alt="img_3.png"></p>
+<p>zrank key  member:排名从0开始计算</p>
+<p>zcount key min max:统计区间数量</p>
+<p><img src="md/img_4.png" alt="img_4.png"></p>
+<h2 id="hr"><hr/></h2>
+<h2 id="redis实际开发时序列化的问题">Redis实际开发时序列化的问题</h2>
+<p><img src="md/image.png" alt="Alt text"></p>
+<h2 id="session共享问题基于redis实现的session数据数据共享">Session共享问题，基于Redis实现的Session数据数据共享</h2>
+<p>多台Tomcat服务器，每一台都有不同的Session空间，将会存在共享问题,互相拷贝具有时间延迟和空间浪费的问题。</p>
+<p><img src="md/img_5.png" alt="img_5.png "></p>
+<blockquote>
+<p>解决方案：Redis数据共享</p>
+</blockquote>
+<blockquote>
+<p>code作为key显然是不行的，将会覆盖，所有选用Phone作为key，使用Hash结构来存储，
+内存占用也会比较少相对于String类型，使用随机token作为key来存储用户信息。
+现在token作为登录凭证，返回token给客户端</p>
+</blockquote>
+<p><img src="md/img_6.png" alt="img_6.png"></p>
+<blockquote>
+<p>缓存：浏览器缓存-&gt;应用层缓存（Redis，Nginx,Tomcat&hellip;各种缓存）-&gt;数据库缓存，根据索引来进行缓存，减少磁盘IO</p>
+</blockquote>
+<p>优点：降低后端负载，提高读写速率，降低响应时间
+成本：数据一致性成本，当数据库发生改变时，缓存未跟新，就会出现不一致，
+代码维护成本也会提高，为了高可用，运维成本也会提高</p>
+<p><img src="md/img_8.png" alt="img_8.png"></p>
+<h2 id="缓存更新策略">缓存更新策略：</h2>
+<p>内存淘汰，超时剔除(低一致性)，主动更新（高一致性）</p>
+<p><img src="md/img_9.png" alt="img_9.png"></p>
+<blockquote>
+<p>主动更新：</p>
+<p>1调用者更新数据库时同时更新缓存；（可控性最高）</p>
+<p>2 缓存和数据库整合为一个服务；</p>
+<p>3 调用只操作，独立异步线程持久化到数据库,从而实现缓存和数据库一致</p>
+</blockquote>
+<blockquote>
+<p>删除缓存（无效操作太多）而不是更新缓存，单体项目需要将缓存和数据库放在一个事务，考虑线程安全
+Cache Aside Pattern（解决线程安全问题）
+<img src="md/img_10.png" alt="img_10.png"></p>
+</blockquote>
+<h3 id="缓存穿透">缓存穿透：</h3>
+<p><em>请求客户端数据中，缓存里面和数据库里面数据都不存在，请求都打到数据库上面了</em></p>
+<blockquote>
+<p>解决办法：布隆过滤器（内存占用少），缓存空对象或者null（额外内存消耗，可能造成短期不一致）
+<img src="md/img_11.png" alt="img_11.png">
+主动添加 对ID的复杂度</p>
+</blockquote>
+<h3 id="缓存雪崩">缓存雪崩</h3>
+<blockquote>
+<p><img src="md/img_12.png" alt="img_12.png">
+很多key同时失效</p>
+</blockquote>
+<h3 id="缓存击穿">缓存击穿</h3>
+<blockquote>
+<p>热点key突然失效，无效热点数据给数据库带来巨大压力</p>
+<p>1：使用互斥锁来写入缓存，但是互相等待时间比较长，性能较差</p>
+<p>2：逻辑过期TTL=-1</p>
+<p><img src="md/img_13.png" alt="img_13.png"></p>
+<p><img src="md/img_14.png" alt="img_14.png"></p>
+</blockquote>
+<p>选择一致性还是可用性</p>
+<blockquote>
+<p>全局唯一 ID生成器
+<img src="md/img_15.png" alt="img_15.png"></p>
+</blockquote>
+<p>UUID：没有满足特性 ，RedisId：数字类型，snowflake：算法，维护机器ID</p>
+<h3 id="多线程下高并发超卖问题是怎么发生的">多线程下高并发超卖问题是怎么发生的</h3>
+<blockquote>
+<p><img src="md/img_17.png" alt="img_17.png"></p>
+<p><img src="md/img_18.png" alt="img_18.png"></p>
+</blockquote>
+<p>当线程扣减时候，多线程查询库存，扣减库存之前，直接一个数据用两次，使得出现并发安全问题。</p>
+<h2 id="锁的介绍">锁的介绍：</h2>
+<h3 id="悲观锁">悲观锁：</h3>
+<blockquote>
+<p>悲观锁</p>
+<p>例如synchronized 和lock，认为线程安全问题一定会发生，在操作数据之前一定要获得锁之后才执行</p>
+</blockquote>
+<blockquote>
+<p>乐观锁</p>
+<p>认为线程安全问题不一定会发生，多数情况不发生，不加锁，
+在线程做数据更新时进行数据判断，看之前的判断数据是否发生修改，性能相较于乐观锁好</p>
+</blockquote>
+<blockquote>
+<p>那怎么判断之前的数据是否发生了修改呢？</p>
+</blockquote>
+<p>1：版本号法（最广泛）
+给数据加上版本号，同时在修改时不仅要查询版本号同时还要修改版本号</p>
+<p><img src="md/img_16.png" alt="img_16.png"></p>
+<p>2：CAS方法，假如数据本身具有变化，那么数据本深就可以作为版本号</p>
+<p>3：分段锁，解决成功率较低的问题，实际秒杀还要对秒杀进行优化，不对数据库造成压力</p>
+<blockquote>
+<p>集群模式下的并发安全问题：</p>
+<p>当出现集群和负载均衡时，可能出现交叉执行，锁失效了，这就是分布式来解决这个问题</p>
+<p>锁监视器不是同一个</p>
+<p>出现了两套JVM，锁监视器具有不同的，这将会导致出现并发安全问题</p>
+<p>==》解决办法：分布式锁</p>
+</blockquote>
+<h3 id="一人一单">一人一单</h3>
+<h2 id="分布式锁">分布式锁</h2>
+<p>实现原理：不同的JVM采用同一个JVM</p>
+<p>分布式锁特点：多进程可见同时时互斥的锁，高可用性，高并发（高性能），安全性，是否会产生死锁</p>
+<p>是否满足可重入性？（不是重点）</p>
+<blockquote>
+<p>分布式锁的实现</p>
+<p>实现方式：Mysql Redis Zookeeper</p>
+<p>mysql:利用mysql本身的互斥锁机制，redis:利用setnx这样的互斥命令，利用key的过期时间来解决安全问题。</p>
+<p>zookeeper 利用唯一节点和有序性来实现互斥锁。高可用性还是比较好的，安全性较好</p>
+</blockquote>
+<h2 id="基于redis实现分布式锁">基于Redis实现分布式锁：</h2>
+<p><img src="md/img_19.png" alt="img_19.png"></p>
+<p><img src="md/img_20.png" alt="img_20.png"></p>
+<pre><code class="language-shell">127.0.0.1:6379&gt; help set
+
+  SET key value [EX seconds|PX milliseconds|EXAT timestamp|PXAT milliseconds-timestamp|KEEPTTL] [NX|XX] [GET]
+  summary: Set the string value of a key
+  since: 1.0.0
+  group: string
+
+127.0.0.1:6379&gt; set lock thread EX 10 NX
+OK
+127.0.0.1:6379&gt; set lock thread EX 10 NX
+(nil)
+127.0.0.1:6379&gt; ttl lock
+(integer) -2
+
+</code></pre>
+<p>实现将会是非阻塞式的分布式锁</p>
+<p><img src="md/img_21.png" alt="img_21.png"></p>
+<p>极端情况线程出现并发安全问题。</p>
+<p><img src="md/img_22.png" alt="img_22.png"></p>
+<p>解决办法：释放锁的时候需要进行检查，看自己的锁标识是否和之前获取的一样。</p>
+<p><img src="md/img_23.png" alt="img_23.png"></p>
+<p><img src="md/img_24.png" alt="img_24.png"></p>
+<p>只要redis锁发生了超时释放就有可能发生并发问题。</p>
+<p>例如FullGc时，发生阻塞就会出现并发问题，所以释放锁和判断锁标识必须是原子性的，必须同时</p>
+<h3 id="用lua脚本来解决原子性问题">用Lua脚本来解决原子性问题</h3>
+<p>利用看门狗解决锁超时释放的问题</p>
+<p><img src="md/img_25.png" alt="img_25.png"></p>
+<p><img src="md/img_26.png" alt="img_26.png"></p>
+<h2 id="redisson问题呵呵这是一个把分布式锁实现好的开源框架">Redisson问题(呵呵，这是一个把分布式锁实现好的开源框架)</h2>
+<p><img src="md/img_27.png" alt="img_27.png"></p>
+<p><img src="md/img_28.png" alt="img_28.png"></p>
+<p><img src="md/img_29.png" alt="img_29.png"></p>
+<h2 id="redisson-分布式锁原理">redisson 分布式锁原理：</h2>
+<p><img src="md/img_30.png" alt="img_30.png"></p>
+<p>可重入：利用hash结构来记录线程id和重入次数，类似于ReentryLock</p>
+<p>可重试：利用信号量实现等待和获取锁失败的重试机制</p>
+<p>超时续约：利用看门狗，在获取锁之后，每隔一段时间，就自动续约，锁满血复活。</p>
+<h3 id="分布式锁的主从一致性问题">分布式锁的主从一致性问题。</h3>
+<p>利用redisson的multi lock来实现</p>
+<p><img src="md/img_31.png" alt="img_31.png"></p>
+<h3 id="利用redis来优化秒杀">利用Redis来优化秒杀</h3>
+<p>使用Set类型，解决唯一性问题。lua脚本来解决锁释放和事务提交的原子性问题</p>
+<p><img src="md/img_32.png" alt="img_32.png"></p>
+<p>将下单信息添加到阻塞队列里面</p>
+<p><img src="md/img_33.png" alt="img_33.png"></p>
+<h3 id="windows相关命令">Windows相关命令：</h3>
+<blockquote>
+<p>查找并记录需要杀死的进程号码： netstat -ano</p>
+<p>查找端口：netstat -ano|findstr [Port]</p>
+<p>查找名称：tasklist |findstr [PID]</p>
+<p>杀死进程： taskkill -f -pid [PID]</p>
+</blockquote>
+<h2 id="hr-1"><hr/></h2>
+<h2 id="消息队列message-queuerabbitmq-kafka-redisq">消息队列【Message Queue】:【RabbitMq Kafka RedisQ】</h2>
+<p>基于Redis实现的异步阻塞队列存在jvm内存溢出问题，基于此实现了消息队列。</p>
+<blockquote>
+<p>消息队列：存储和管理消息，称为消息代理（message broker）</p>
+<p>生产者:发送消息到消息队列</p>
+<p>消费者：从消息队列中获取消息并处理</p>
+<p><img src="md/img_34.png" alt="img_34.png"></p>
+</blockquote>
+<h4 id="基于redis-list结构来模拟消息队列">基于Redis-List结构来模拟消息队列</h4>
+<p>BLpush+BRpop/BRpush+BLpop</p>
+<p>独立于JVM，不依赖于机器，具备数据持久化，满足消息的有序性。
+无法避免消息丢失，只支持单消费者。</p>
+<h4 id="基于pubsub的消息队列">基于PubSub的消息队列</h4>
+<p>发布-订阅模式</p>
+<p>支持多生产和多消费：publish subscribe，psubscribe匹配使用正则表达式</p>
+<p>不支持消息持久化，无法避免消息丢失（当客户端宕机时，不接受消息，消息将会丢失），消息堆积有上限。</p>
+<h4 id="基于stream的消息队列基于redis-50实现">基于Stream的消息队列。基于Redis-5.0实现</h4>
+<p>XADD key [队列是否创建] [消息队列最大上限] [ID] [filed] [value]
+XREAD [count] [block sec] streams [key] [id]
+xgroup creat key groupName ID
+消息可回溯，可阻塞读取，可被多个消费者读取，有漏读的风险
+单词：pending:待定</p>
+<p><img src="md/img_35.png" alt="img_35.png"></p>
+<p><img src="md/img_36.png" alt="img_36.png"></p>
+<p><img src="md/img_37.png" alt="img_37.png"></p>
+<h3 id="消费者组">消费者组：</h3>
+<p>消息分流 消息标识（确保消息都会被消费） 消息确认（消息处于pending状态，存入list中，需要得到确认 ）</p>
+<p>xgroup create/destory/delconsumer key groupName ID [&ldquo;mkstream&rdquo;]</p>
+<p>基于stream来实现的消费者组，
+读取消息都是从pending-list中读取消息，实现方法是通过id进行筛选</p>
+<p>消息读取之后必须进行确认，参数为消息id，确认之后消息id将会被消息队列移除</p>
+<p>消费者组的名称一般企业环境下都是写在yml文件里面</p>
+<p><img src="md/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97.png" alt="img.png"></p>
+<h3 id="三种消息队列list-pubsub-stream-解决方案的区别">三种消息队列List PubSub Stream 解决方案的区别</h3>
+<p><img src="md/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E6%A8%A1%E5%BC%8F.png" alt="img_1.png"></p>
+<h2 id="发布达人探店">发布达人探店</h2>
+<p>对两张表去进行表的设计：</p>
+<p>利用Zsort来作为点赞和排行榜数据结构
+相关命令：zadd member score ,zscore member，zrange key from to</p>
+<h2 id="关注推送feed流提供沉浸式体验">关注推送，Feed流，提供沉浸式体验</h2>
+<blockquote>
+<p>常见的两种实现模式：</p>
+<p>timeline：核心需要带上时间戳，不做内容筛选，信息全面，实现相对简单，但是信息噪音比较多</p>
+<p>实现方式：拉模式，推模式，推拉结合</p>
+<p>拉模式（读扩散）：缺点是延迟高</p>
+<p><img src="md/%E6%8E%A8%E6%A8%A1%E5%BC%8F.png" alt="img_2.png"></p>
+<p>推模式</p>
+<p><img src="md/%E6%8B%89%E6%A8%A1%E5%BC%8F.png" alt="img_3.png"></p>
+<p>推拉结合：
+<img src="md/%E6%8E%A8%E6%8B%89%E7%BB%93%E5%90%88%E6%A8%A1%E5%BC%8F.png" alt="img.png"></p>
+<p>收件箱使用redis来实现，查询redis查询收件箱数据时需要实现分页查询，list，soretedset，数据的角标会发生变换，按照传统的分页方案将会出现错误</p>
+<p><img src="md/feed%E5%88%86%E9%A1%B5%E9%97%AE%E9%A2%98.png" alt="img_1.png"></p>
+<p><img src="md/%E6%BB%9A%E5%8A%A8%E5%88%86%E9%A1%B5.png" alt="img_2.png"></p>
+<p>智能排序：针对用户使用习惯做一些算法，尽量接近用户使用习惯，但当用户习惯与算法不对称时，将会出现反作用</p>
+</blockquote>
+
+</article>
+
+
+      
+        <div class="my-4">
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 me-2 hover:text-eureka">#缓存</a>
+    
+</div>
+      
+
+      
+
+
+
+      
+
+      
+  <div
+    class="-mx-2 mt-4 flex flex-col border-t px-2 pt-4 md:flex-row md:justify-between"
+  >
+    <div>
+      
+        <span class="text-primary-text block font-bold"
+          >Previous</span
+        >
+        <a href="/la/java/javase/threadlocal/" class="block">ThreadLocal</a>
+      
+    </div>
+    <div class="mt-4 md:mt-0 md:text-right">
+      
+        <span class="text-primary-text block font-bold">下一篇</span>
+        <a href="/la/post/" class="block">Hello Friend</a>
+      
+    </div>
+  </div>
+
+
+      
+
+
+
+    </div>
+    
+
+    
+    
+  </div>
+
+  
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        hljs.highlightAll();
+      });
+    </script>
+
+          </div>
+        </div>
+      
+    </main>
+    <footer class="pl-scrollbar">
+      <div class="mx-auto w-full max-w-screen-xl"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2023 <a href="https://todreamr.github.com/">春江花朝秋月夜</a> and <a href="https://www.ruiqima.com/">MA Ruiqi</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+    </footer>
+  </body>
+</html>

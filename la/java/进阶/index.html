@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  dir="ltr"
+  
+><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>并发进阶 | 春江花朝秋月夜</title>
+
+<meta name="generator" content="Hugo Eureka 0.9.3" />
+<link rel="stylesheet" href="/css/eureka.min.9cec6350e37e534b0338fa9a085bf06855de3b0f2dcf857e792e5e97b07ea905d4d5513db554cbc26a9c3da622bae92d.css">
+<script defer src="/js/eureka.min.fa9a6bf6d7a50bb635b4cca7d2ba5cf3dfb095ae3798773f1328f7950028b48c17d06276594e1b5f244a25a6c969a705.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&amp;family=Noto&#43;Serif&#43;SC:wght@400;600;700&amp;display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/base16/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"
+   crossorigin></script>
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/languages/dart.min.js"
+     crossorigin></script>
+<link rel="stylesheet" href="/css/highlightjs.min.2958991528e43eb6fc9b8c4f2b8e052f79c4010718e1d1e888a777620e9ee63021c2c57ec7417a3108019bb8c41943e6.css" media="print" onload="this.media='all';this.onload=null">
+
+
+<script defer type="text/javascript" src="/js/fontawesome.min.f14def4f6943de5b19b19c02e239b98c8cc6a8fe66b6828a21da7c0e9d405df8364cab68aa637c3bbe735eb7c325aa3c.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+   integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js" 
+  integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+   integrity="sha384-&#43;XBljXPPiv&#43;OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js" 
+  integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0"  crossorigin></script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="/img/author_hu46370d4ccd3481872546da16224d0daa_1972225_32x32_fill_box_center_3.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/author_hu46370d4ccd3481872546da16224d0daa_1972225_180x180_fill_box_center_3.png">
+
+<meta name="description"
+  content="并发编程进阶">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Las",
+      "item":"/la/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"并发进阶",
+      "item":"/la/java/%E8%BF%9B%E9%98%B6/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/la/java/%E8%BF%9B%E9%98%B6/"
+    },
+    "headline": "并发进阶 | 春江花朝秋月夜",
+    "image": "/la/java/%E8%BF%9B%E9%98%B6/featured.jpg",
+    "datePublished": "2023-10-09T20:38:19+08:00",
+    "dateModified": "2023-10-09T20:38:19+08:00",
+    "wordCount":  710 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "春江花朝秋月夜",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "/img/author.png"
+        }
+        },
+    "description": "并发编程进阶"
+}
+</script><meta property="og:title" content="并发进阶 | 春江花朝秋月夜" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="/img/author.png">
+
+
+<meta property="og:url" content="/la/java/%E8%BF%9B%E9%98%B6/" />
+
+
+
+<meta property="og:description" content="并发编程进阶" />
+
+
+
+<meta property="og:locale" content="en" />
+
+
+
+
+<meta property="og:site_name" content="春江花朝秋月夜" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2023-10-09T20:38:19&#43;08:00" />
+
+
+<meta property="article:modified_time" content="2023-10-09T20:38:19&#43;08:00" />
+
+
+
+<meta property="article:section" content="la" />
+
+
+<meta property="article:tag" content="并发编程" />
+
+
+
+
+
+<meta property="og:see_also" content="/la/java/%E5%B9%B6%E5%8F%91/" />
+
+
+
+
+  <body class="flex min-h-screen flex-col">
+    <header
+      class="min-h-16 pl-scrollbar bg-secondary-bg fixed z-50 flex w-full items-center shadow-sm"
+    >
+      <div class="mx-auto w-full max-w-screen-xl"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="me-6 text-primary-text text-xl font-bold">春江花朝秋月夜</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/tags/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">标签</a>
+            <a href="/la/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  me-4">笔记</a>
+            <a href="/info" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">关于</a>
+            <a href="/friend/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">朋友</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col start-0 md:start-auto end-auto md:end-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+    </header>
+    <main class="grow pt-16">
+        <div class="pl-scrollbar">
+          <div class="mx-auto w-full max-w-screen-xl lg:px-4 xl:px-8">
+  
+  
+  <div class="grid grid-cols-2 gap-4 lg:grid-cols-8 lg:pt-12">
+    <div
+      class="lg:col-start-2 bg-secondary-bg col-span-2 rounded px-6 py-8 lg:col-span-6"
+    >
+      <article class="prose">
+  <h1 class="mb-4">并发进阶</h1>
+
+  <div
+  class="text-tertiary-text not-prose mt-2 flex flex-row flex-wrap items-center"
+>
+  <div class="me-6 my-2">
+    <i class="fas fa-calendar me-1"></i>
+    <span
+      >2023-10-09</span
+    >
+  </div>
+  <div class="me-6 my-2">
+    <i class="fas fa-clock me-1"></i>
+    <span>4 min read</span>
+  </div>
+
+  
+
+  
+</div>
+
+
+  
+  
+    <img src="/la/java/%E8%BF%9B%E9%98%B6/featured.jpg" class="w-full" alt="Featured Image">
+  
+
+  <h1 id="线程池">线程池</h1>
+<blockquote>
+<p>new Thread缺点：频繁创建和销毁，浪费了线程资源，短时间创建大量线程和销毁
+线程池是有限可重复使用的线程，用完需要归还</p>
+</blockquote>
+<p><img src="post/img.png" alt="img.png"></p>
+<pre><code class="language-java">//构造方法，含有七个参数
+public ThreadPoolExecutor(int corePoolSize,//核心线程池大小
+                              int maximumPoolSize,//最大线程池大小
+                              long keepAliveTime,//线程最大空闲时间
+                              TimeUnit unit,//最大空闲时间单位
+                              BlockingQueue&lt;Runnable&gt; workQueue//线程等待队列，当超出最大容量时，任务进入等待队列) {
+        this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
+             Executors.defaultThreadFactory(),//线程创建工厂，可自定义
+		defaultHandler//拒绝策略，实在不能加入新的任务时，拒绝任务);
+    }
+</code></pre>
+<h2 id="根据cpu类型分配线程池大小">根据CPU类型分配线程池大小</h2>
+<h2 id="threadpoolexecutor">ThreadPoolExecutor</h2>
+<pre><code class="language-java">    public static void main(String[] args) throws InterruptedException {
+        ThreadPoolExecutor executor =
+                new ThreadPoolExecutor(2, 4,   //2个核心线程，最大线程数为4个
+                        3, TimeUnit.SECONDS,        //最大空闲时间为3秒钟
+                        new ArrayBlockingQueue&lt;&gt;(2));     //这里使用容量为2的ArrayBlockingQueue队列
+
+        for (int i = 0; i &lt; 6; i++) {   //开始6个任务
+            int finalI = i;
+            executor.execute(() -&gt; {
+                try {
+                    System.out.println(Thread.currentThread().getName()+&quot; 开始执行！（&quot;+ finalI);
+                    TimeUnit.SECONDS.sleep(1);
+                    System.out.println(Thread.currentThread().getName()+&quot; 已结束！（&quot;+finalI);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+
+        TimeUnit.SECONDS.sleep(1);    //看看当前线程池中的线程数量
+        System.out.println(&quot;线程池中线程数量：&quot;+executor.getPoolSize());
+        TimeUnit.SECONDS.sleep(5);     //等到超过空闲时间
+        System.out.println(&quot;线程池中线程数量：&quot;+executor.getPoolSize());
+
+        executor.shutdownNow();    //使用完线程池记得关闭，不然程序不会结束，它会取消所有等待中的任务以及试图中断正在执行的任务，关闭后，无法再提交任务，一律拒绝
+        //executor.shutdown();     同样可以关闭，但是会执行完等待队列中的任务再关闭
+    }
+}
+</code></pre>
+<h4 id="arrayblockingqueue">ArrayBlockingQueue</h4>
+<p>作为有界的阻塞队列，具有响应的容量，可以自行设置，对比SynchronousQueue没有容量，选这个会出现爆栈的问题，原因
+是线程池ThreadPoolExecutor发现容量超出时会poll线程，但SynchronousQueue没有容量poll无意义。
+在线程池里面的等待队列需要具有容量。</p>
+<h4 id="线程池的拒绝策略">线程池的拒绝策略</h4>
+<p>线程池超过最大的容量时，需要拒绝这个任务。</p>
+<ul>
+<li>AbortPolicy(default): 直接抛异常</li>
+<li>CallerRunsPolicy: 直接让提交任务的线程运行这个任务，如果向主线程提交了任务就让主线程去执行这个任务，谁提交谁执行</li>
+<li>DiscardOldestPolicy: 丢弃队列中最近的任务，替换为当前任务</li>
+<li>DiscardPolicy: Do nothing</li>
+</ul>
+<p>自定义拒绝策略和线程生产工厂
+<img src="post/img_1.png" alt="img_1.png"></p>
+<p>任务过程出现异常，线程池当中执行任务时发生异常，线程将会自动销毁</p>
+<h2 id="executorservice">ExecutorService</h2>
+<p>可以使用Executors工具类来快速创建线程池：</p>
+<pre><code class="language-java">    ExecutorService executor = Executors.newFixedThreadPool(2);   //直接创建一个固定容量的线程池
+</code></pre>
+<blockquote>
+<p>ExecutorService本质内部实现其实是ThreadPoolExecutor，所以创建的线程都不是核心线程</p>
+</blockquote>
+<pre><code class="language-java">//内部实现
+public static ExecutorService newFixedThreadPool(int nThreads) {
+    return new ThreadPoolExecutor(nThreads, nThreads,
+                                  0L, TimeUnit.MILLISECONDS,
+                                  new LinkedBlockingQueue&lt;Runnable&gt;());
+}
+</code></pre>
+<p>直接将最大线程和核心线程数量设定为一样的，并且等待时间为0，因为压根不需要，并且采用的是一个无界的LinkedBlockingQueue作为等待队列。</p>
+<pre><code class="language-java">//创建单个线程
+public static ExecutorService newSingleThreadExecutor() {
+    return new FinalizableDelegatedExecutorService
+        (new ThreadPoolExecutor(1, 1,
+                                0L, TimeUnit.MILLISECONDS,
+                                new LinkedBlockingQueue&lt;Runnable&gt;()));
+}
+</code></pre>
+<p>这里并不是直接创建的一个ThreadPoolExecutor对象，而是套了一层FinalizableDelegatedExecutorService，目的是内部套了一层，外部不可见，不可修改，保证安全性</p>
+<blockquote>
+<p>由于executorService内部直接最大容量为Integer.	MAX_VALUE,非常大，不安全</p>
+</blockquote>
+<h5 id="newcachedthreadpool">newCachedThreadPool</h5>
+<p><img src="post/img_4.png" alt="img">
+注意生成的线程池里面都不是核心线程，同时最大容量非常大，需要慎用</p>
+<h2 id="执行带返回值的任务">执行带返回值的任务：</h2>
+<blockquote>
+<p>ExecutorService执行任务有两种方法：submit和execute</p>
+</blockquote>
+<p>接受返回值的只有submit</p>
+<p><img src="post/img_2.png" alt="img"></p>
+<pre><code class="language-java">public static void main(String[] args) throws InterruptedException, ExecutionException {
+        ExecutorService executorService=Executors.newSingleThreadExecutor();
+        Future&lt;String&gt; future= executorService.submit(()-&gt;{
+            TimeUnit.SECONDS.sleep(3);
+            return &quot;你好世界&quot;;
+        });
+        System.out.println(future.cancel(true));//取消任务，这时候里面的字串将不会再返回出来
+        executorService.shutdown();
+        System.out.println(future.get());
+    }
+</code></pre>
+<h3 id="定时任务scheduledthreadpoolexecutor">定时任务ScheduledThreadPoolExecutor</h3>
+<pre><code class="language-java">        ScheduledThreadPoolExecutor executor=new ScheduledThreadPoolExecutor(1);
+//        executor.schedule(()-&gt; System.out.println(&quot;开始定时任务&quot;),3,TimeUnit.SECONDS);
+//        ScheduledFuture&lt;String&gt; scheduledFuture=executor.schedule(()-&gt; &quot;开始定时任务&quot;,3,TimeUnit.SECONDS); 
+//        System.out.println(scheduledFuture.isDone());
+        //固定频率进行定时计划：
+        executor.scheduleAtFixedRate(()-&gt; System.out.println(&quot;hello!&quot;),3,1,TimeUnit.SECONDS);
+//        executor.shutdown();
+</code></pre>
+<p>线程延迟线程池：ScheduledWithFixedDelay
+<img src="post/img_3.png" alt=""></p>
+<pre><code class="language-java">protected void finalize() {    //在GC时，会执行finalize方法，此方法中会关闭掉线程池，释放资源
+        super.shutdown();
+    }
+</code></pre>
+<h2 id="线程池实现原理">线程池实现原理</h2>
+<pre><code class="language-java">//这个就是我们指定的阻塞队列
+private final BlockingQueue&lt;Runnable&gt; workQueue;
+
+//再次提醒，这里没加锁！！该有什么意识不用我说了吧，所以说ctl才会使用原子类。
+public void execute(Runnable command) {
+    if (command == null)
+        throw new NullPointerException();     //如果任务为null，那执行个寂寞，所以说直接空指针
+    int c = ctl.get();      //获取ctl的值，一会要读取信息的
+    if (workerCountOf(c) &lt; corePoolSize) {   //判断工作线程数量是否小于核心线程数
+        if (addWorker(command, true))    //如果是，那不管三七二十一，直接加新的线程执行，然后返回即可
+            return;
+        c = ctl.get();    //如果线程添加失败（有可能其他线程也在对线程池进行操作），那就更新一下c的值
+    }
+    if (isRunning(c) &amp;&amp; workQueue.offer(command)) {   //继续判断，如果当前线程池是运行状态，那就尝试向阻塞队列中添加一个新的等待任务
+        int recheck = ctl.get();   //再次获取ctl的值
+        if (! isRunning(recheck) &amp;&amp; remove(command))   //这里是再次确认当前线程池是否关闭，如果添加等待任务后线程池关闭了，那就把刚刚加进去任务的又拿出来
+            reject(command);   //然后直接拒绝当前任务的提交（会根据我们的拒绝策略决定如何进行拒绝操作）
+        else if (workerCountOf(recheck) == 0)   //如果这个时候线程池依然在运行状态，那么就检查一下当前工作线程数是否为0，如果是那就直接添加新线程执行
+            addWorker(null, false);   //添加一个新的非核心线程，但是注意没添加任务
+      	//其他情况就啥也不用做了
+    }
+    else if (!addWorker(command, false))   //这种情况要么就是线程池没有运行，要么就是队列满了，按照我们之前的规则，核心线程数已满且队列已满，那么会直接添加新的非核心线程，但是如果已经添加到最大数量，这里肯定是会失败的
+        reject(command);   //确实装不下了，只能拒绝
+}
+</code></pre>
+<h4 id="addworker实现">addWorker实现</h4>
+<pre><code class="language-java">private boolean addWorker(Runnable firstTask, boolean core) {
+  	//这里给最外层循环打了个标签，方便一会的跳转操作
+    retry:
+    for (;;) {    //无限循环，老套路了，注意这里全程没加锁
+        int c = ctl.get();     //获取ctl值
+        int rs = runStateOf(c);    //解析当前的运行状态
+
+        // Check if queue empty only if necessary.
+        if (rs &gt;= SHUTDOWN &amp;&amp;   //判断线程池是否不是处于运行状态
+            ! (rs == SHUTDOWN &amp;&amp;   //如果不是运行状态，判断线程是SHUTDOWN状态并、任务不为null、等待队列不为空，只要有其中一者不满足，直接返回false，添加失败
+               firstTask == null &amp;&amp;   
+               ! workQueue.isEmpty()))
+            return false;
+
+        for (;;) {   //内层又一轮无限循环，这个循环是为了将线程计数增加，然后才可以真正地添加一个新的线程
+            int wc = workerCountOf(c);    //解析当前的工作线程数量
+            if (wc &gt;= CAPACITY ||
+                wc &gt;= (core ? corePoolSize : maximumPoolSize))    //判断一下还装得下不，如果装得下，看看是核心线程还是非核心线程，如果是核心线程，不能大于核心线程数的限制，如果是非核心线程，不能大于最大线程数限制
+                return false;
+            if (compareAndIncrementWorkerCount(c))    //CAS自增线程计数，如果增加成功，任务完成，直接跳出继续
+                break retry;    //注意这里要直接跳出最外层循环，所以用到了标签（类似于goto语句）
+            c = ctl.get();  // 如果CAS失败，更新一下c的值
+            if (runStateOf(c) != rs)    //如果CAS失败的原因是因为线程池状态和一开始的不一样了，那么就重新从外层循环再来一次
+                continue retry;    //注意这里要直接从最外层循环继续，所以用到了标签（类似于goto语句）
+            // 如果是其他原因导致的CAS失败，那只可能是其他线程同时在自增，所以重新再来一次内层循环
+        }
+    }
+
+  	//好了，线程计数自增也完了，接着就是添加新的工作线程了
+    boolean workerStarted = false;   //工作线程是否已启动
+    boolean workerAdded = false;    //工作线程是否已添加
+    Worker w = null;     //暂时理解为工作线程，别急，我们之后会解读Worker类
+    try {
+        w = new Worker(firstTask);     //创建新的工作线程，传入我们提交的任务
+        final Thread t = w.thread;    //拿到工作线程中封装的Thread对象
+        if (t != null) {      //如果线程不为null，那就可以安排干活了
+            final ReentrantLock mainLock = this.mainLock;      //又是ReentrantLock加锁环节，这里开始就是只有一个线程能进入了
+            mainLock.lock();
+            try {
+                // Recheck while holding lock.
+                // Back out on ThreadFactory failure or if
+                // shut down before lock acquired.
+                int rs = runStateOf(ctl.get());    //获取当前线程的运行状态
+
+                if (rs &lt; SHUTDOWN ||
+                    (rs == SHUTDOWN &amp;&amp; firstTask == null)) {    //只有当前线程池是正在运行状态，或是SHUTDOWN状态且firstTask为空，那么就继续
+                    if (t.isAlive()) // 检查一下线程是否正在运行状态
+                        throw new IllegalThreadStateException();   //如果是那肯定是不能运行我们的任务的
+                    workers.add(w);    //直接将新创建的Work丢进 workers 集合中
+                    int s = workers.size();   //看看当前workers的大小
+                    if (s &gt; largestPoolSize)   //这里是记录线程池运行以来，历史上的最多线程数
+                        largestPoolSize = s;
+                    workerAdded = true;   //工作线程已添加
+                }
+            } finally {
+                mainLock.unlock();   //解锁
+            }
+            if (workerAdded) {
+                t.start();   //启动线程
+                workerStarted = true;  //工作线程已启动
+            }
+        }
+    } finally {
+        if (! workerStarted)    //如果线程在上面的启动过程中失败了
+            addWorkerFailed(w);    //将w移出workers并将计数器-1，最后如果线程池是终止状态，会尝试加速终止线程池
+    }
+    return workerStarted;   //返回是否成功
+}
+</code></pre>
+<h2 id="并发工具类">并发工具类</h2>
+<h3 id="计数器锁countdownlatch">计数器锁（CountDownLatch）</h3>
+<p>多任务同步神器。它允许一个或多个线程，等待其他线程完成工作,典型应用场景：多个线程分段相加最后统计所有线程的和</p>
+<blockquote>
+<p>要实现这个需求，那么有一个很麻烦的地方，我们不知道任务到底什么时候执行完毕，那么可否将最终统计延迟一定时间进行呢？但是最终统计无论延迟多久进行，
+要么不能保证所有任务都完成，要么可能所有任务都完成了而这里还在等。</p>
+</blockquote>
+<pre><code class="language-java">    public static void main(String[] args) throws InterruptedException {
+        CountDownLatch latch=new CountDownLatch(20);
+        for (int i = 0; i &lt; 20; i++) {
+        int finalI=i;
+        new Thread(()-&gt;{
+        try {
+        Thread.sleep((long) (2000 * new Random().nextDouble()));
+        System.out.println(&quot;任务&quot;+finalI+&quot;完成&quot;);
+        }catch (InterruptedException e){
+        e.printStackTrace();
+        }
+        latch.countDown();   //每执行一次计数器都会-1
+        }).start();
+        }
+        //开始等待所有的线程完成，当计数器为0时，恢复运行
+        latch.await();   //这个操作可以同时被多个线程执行，一起等待，这里只演示了一个
+        System.out.println(&quot;所有子任务都完成！任务完成！！！&quot;);
+        }
+
+</code></pre>
+<p>例子： 用四个线程实现对1到10000完成累计加和</p>
+<pre><code class="language-java">    public static void main(String[] args) throws InterruptedException {
+        long begin=System.currentTimeMillis();
+       CountDownLatch latch=new CountDownLatch(4);
+       int res[]=new int[4];
+        for (int i = 0; i &lt; 4; i++) {
+            int finalI=i;
+            new Thread(()-&gt;{
+                int sum=0;
+                int numbersPerThread = (int) Math.ceil((double) 100/ 4);
+                int startNumber = finalI * numbersPerThread + 1;
+                int endNumber = (finalI + 1) * numbersPerThread;
+                for (int j =startNumber ; j &lt;=endNumber; j++) {
+                  sum+=j;
+                }
+                System.out.println(sum);
+                res[finalI]=sum;
+                latch.countDown();   //每执行一次计数器都会-1
+            }).start();
+        }
+        //开始等待所有的线程完成，当计数器为0时，恢复运行
+        latch.await();   //这个操作可以同时被多个线程执行，一起等待，这里只演示了一个
+        int result=0;
+        for (Integer integer:res) {
+            result+=integer;
+        }
+        long end=System.currentTimeMillis();
+        System.out.println(&quot;所有子任务都完成！任务完成,结果是&quot;+result+&quot;花费时间：&quot;+(end-begin)+&quot;ms&quot;);
+    }
+
+</code></pre>
+<p>实现效果：
+<img src="post/img_5.png" alt="img"></p>
+<ul>
+<li>共享锁是线程共享的，同一时刻能有多个线程拥有共享锁。</li>
+<li>如果一个线程刚获取了共享锁，那么在其之后等待的线程也很有可能能够获取到锁，所以得传播下去继续尝试唤醒后面的结点，不像独占锁，独占的压根不需要考虑这些。</li>
+<li>如果一个线程刚释放了锁，不管是独占锁还是共享锁，都需要唤醒后续等待结点的线程。</li>
+</ul>
+<p>实现原理：</p>
+<p>在工具构建的时候创建多个共享锁，调用countDown（）调用时就可以减去一把锁，当state减为0时即可获取共享锁，实现方式是通过
+链表向后继节点一个个从等待状态唤醒</p>
+<h3 id="循环屏障cyclicbarrier">循环屏障CyclicBarrier</h3>
+<blockquote>
+<p>循环屏障会不断阻挡线程，直到被阻挡的线程足够多时，才能一起冲破屏障，并且在
+冲破屏障时，我们也可以做一些其他的任务。这和人多力量大的道理是差不多的，当人足够多时方能冲破阻碍，
+到达美好的明天。当然，屏障由于是可循环的，所以它在被冲破后，会重新开始计数，继续阻挡后续的线程：</p>
+</blockquote>
+<pre><code class="language-java">CyclicBarrier barrier = new CyclicBarrier(5);  //创建一个初始值为5的循环屏障
+</code></pre>
+<p>屏障最大容量：parties
+特点：等待线程冲破阻碍的时候才可以 一起完成任务，完成任务之后继续等待，直到下一次达到最大值 。</p>
+<p>当await状态下的线程被中断，屏障将会被破坏，这一轮不能使用，除非重新开始</p>
+<h3 id="信号量-semaphore">信号量 Semaphore</h3>
+<p>限制信号容量，在一段任务中，要求
+只能部分线程完成这段工作的时候完成</p>
+<h3 id="线程之间进行数据交换-exchanger">线程之间进行数据交换 Exchanger</h3>
+<p>实现两个线程之间进行数据交换的通信，只有当两个线程完成交换之后才可以完成任务，否则线程阻塞。</p>
+<h3 id="forkjoin框架">Fork/Join框架</h3>
+<blockquote>
+<p>ForkJoinPool pool = new ForkJoinPool();</p>
+</blockquote>
+<ul>
+<li>fork指的是划分任务，任务约分越细</li>
+<li>join指的是加入任务，任务开始执行</li>
+</ul>
+<h2 id="end">END</h2>
+
+</article>
+
+
+      
+        <div class="my-4">
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 me-2 hover:text-eureka">#并发编程</a>
+    
+</div>
+      
+
+      
+
+
+
+      
+
+      
+  <div
+    class="-mx-2 mt-4 flex flex-col border-t px-2 pt-4 md:flex-row md:justify-between"
+  >
+    <div>
+      
+        <span class="text-primary-text block font-bold"
+          >Previous</span
+        >
+        <a href="/la/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" class="block">垃圾回收机制</a>
+      
+    </div>
+    <div class="mt-4 md:mt-0 md:text-right">
+      
+        <span class="text-primary-text block font-bold">下一篇</span>
+        <a href="/la/java/%E5%B9%B6%E5%8F%91/" class="block">Java-Concurrent</a>
+      
+    </div>
+  </div>
+
+
+      
+
+
+
+    </div>
+    
+
+    
+    
+      <div
+        class="lg:col-start-2 bg-secondary-bg prose col-span-2 rounded p-6 lg:col-span-6"
+      >
+        <h3>See Also</h3>
+        
+          <a href="/la/java/%E5%B9%B6%E5%8F%91/" class="no-underline">Java-Concurrent</a>
+          <br />
+        
+      </div>
+    
+  </div>
+
+  
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        hljs.highlightAll();
+      });
+    </script>
+
+          </div>
+        </div>
+      
+    </main>
+    <footer class="pl-scrollbar">
+      <div class="mx-auto w-full max-w-screen-xl"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2023 <a href="https://todreamr.github.com/">春江花朝秋月夜</a> and <a href="https://www.ruiqima.com/">MA Ruiqi</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+    </footer>
+  </body>
+</html>

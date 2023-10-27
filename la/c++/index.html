@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  dir="ltr"
+  
+><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>C&#43;&#43; | 春江花朝秋月夜</title>
+
+<meta name="generator" content="Hugo Eureka 0.9.3" />
+<link rel="stylesheet" href="/css/eureka.min.9cec6350e37e534b0338fa9a085bf06855de3b0f2dcf857e792e5e97b07ea905d4d5513db554cbc26a9c3da622bae92d.css">
+<script defer src="/js/eureka.min.fa9a6bf6d7a50bb635b4cca7d2ba5cf3dfb095ae3798773f1328f7950028b48c17d06276594e1b5f244a25a6c969a705.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&amp;family=Noto&#43;Serif&#43;SC:wght@400;600;700&amp;display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/base16/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"
+   crossorigin></script>
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/languages/dart.min.js"
+     crossorigin></script>
+<link rel="stylesheet" href="/css/highlightjs.min.2958991528e43eb6fc9b8c4f2b8e052f79c4010718e1d1e888a777620e9ee63021c2c57ec7417a3108019bb8c41943e6.css" media="print" onload="this.media='all';this.onload=null">
+
+
+<script defer type="text/javascript" src="/js/fontawesome.min.f14def4f6943de5b19b19c02e239b98c8cc6a8fe66b6828a21da7c0e9d405df8364cab68aa637c3bbe735eb7c325aa3c.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+   integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js" 
+  integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+   integrity="sha384-&#43;XBljXPPiv&#43;OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js" 
+  integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0"  crossorigin></script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="/img/author_hu46370d4ccd3481872546da16224d0daa_1972225_32x32_fill_box_center_3.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/author_hu46370d4ccd3481872546da16224d0daa_1972225_180x180_fill_box_center_3.png">
+
+<meta name="description"
+  content="鉴于未来数据结构和算法的实现我想通过C&#43;&#43;来实现，现在简要总结下C&#43;&#43;的常用方法和数据结构类型">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Las",
+      "item":"/la/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"C++",
+      "item":"/la/c++/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/la/c++/"
+    },
+    "headline": "C\u002b\u002b | 春江花朝秋月夜","datePublished": "2023-10-27T20:52:20+08:00",
+    "dateModified": "2023-10-27T20:52:20+08:00",
+    "wordCount":  802 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "春江花朝秋月夜",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "/img/author.png"
+        }
+        },
+    "description": "鉴于未来数据结构和算法的实现我想通过C\u002b\u002b来实现，现在简要总结下C\u002b\u002b的常用方法和数据结构类型"
+}
+</script><meta property="og:title" content="C&#43;&#43; | 春江花朝秋月夜" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="/img/author.png">
+
+
+<meta property="og:url" content="/la/c&#43;&#43;/" />
+
+
+
+<meta property="og:description" content="鉴于未来数据结构和算法的实现我想通过C&#43;&#43;来实现，现在简要总结下C&#43;&#43;的常用方法和数据结构类型" />
+
+
+
+<meta property="og:locale" content="en" />
+
+
+
+
+<meta property="og:site_name" content="春江花朝秋月夜" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2023-10-27T20:52:20&#43;08:00" />
+
+
+<meta property="article:modified_time" content="2023-10-27T20:52:20&#43;08:00" />
+
+
+
+<meta property="article:section" content="la" />
+
+
+<meta property="article:tag" content="语言" />
+
+
+
+
+
+
+  <body class="flex min-h-screen flex-col">
+    <header
+      class="min-h-16 pl-scrollbar bg-secondary-bg fixed z-50 flex w-full items-center shadow-sm"
+    >
+      <div class="mx-auto w-full max-w-screen-xl"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="me-6 text-primary-text text-xl font-bold">春江花朝秋月夜</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/tags/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">标签</a>
+            <a href="/la/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  me-4">笔记</a>
+            <a href="/info" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">关于</a>
+            <a href="/friend/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">朋友</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col start-0 md:start-auto end-auto md:end-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+    </header>
+    <main class="grow pt-16">
+        <div class="pl-scrollbar">
+          <div class="mx-auto w-full max-w-screen-xl lg:px-4 xl:px-8">
+  
+  
+  <div class="grid grid-cols-2 gap-4 lg:grid-cols-8 lg:pt-12">
+    <div
+      class="lg:col-start-2 bg-secondary-bg col-span-2 rounded px-6 py-8 lg:col-span-6"
+    >
+      <article class="prose">
+  <h1 class="mb-4">C&#43;&#43;</h1>
+
+  <div
+  class="text-tertiary-text not-prose mt-2 flex flex-row flex-wrap items-center"
+>
+  <div class="me-6 my-2">
+    <i class="fas fa-calendar me-1"></i>
+    <span
+      >2023-10-27</span
+    >
+  </div>
+  <div class="me-6 my-2">
+    <i class="fas fa-clock me-1"></i>
+    <span>4 min read</span>
+  </div>
+
+  
+
+  
+</div>
+
+
+  
+  
+
+  <h1 id="c实现数据结构和初步的认识">C++实现数据结构和初步的认识</h1>
+<blockquote>
+<p>鉴于未来数据结构和算法的实现我想通过C++来实现，现在简要总结下C++的常用方法和数据结构类型</p>
+</blockquote>
+<h3 id="头文件和方法声明">头文件和方法声明</h3>
+<p>等同于C语言</p>
+<h4 id="标准输入输出函数">标准输入输出函数</h4>
+<pre><code class="language-c++">    std::cout &lt;&lt; &quot;Hello, World!&quot; &lt;&lt; std::endl;
+</code></pre>
+<blockquote>
+<p>引入 using namespace std;这可以避免函数要不断的添加前缀</p>
+</blockquote>
+<pre><code class="language-c++">   using namespace std;
+   ...
+   int input;
+   cout&lt;&lt;&quot;Hello world&quot;&lt;&lt;endl;//输出函数
+   cin&gt;&gt;input;
+   printf(&quot;%d&quot;,input);
+   ...
+</code></pre>
+<p><img src="img.png" alt="img.png"></p>
+<h3 id="传递函数的不同方式">传递函数的不同方式</h3>
+<p><img src="img_1.png" alt="img_1.png"></p>
+<h4 id="const修饰指针">const修饰指针</h4>
+<ul>
+<li>修饰常量</li>
+<li>修饰指针</li>
+<li>修饰常量和指针</li>
+</ul>
+<pre><code class="language-c++">int main() {
+
+	int a = 10;
+	int b = 10;
+
+	//const修饰的是指针，指针指向可以改，指针指向的值不可以更改
+	const int * p1 = &amp;a; 
+	p1 = &amp;b; //正确
+	//*p1 = 100;  报错
+	
+
+	//const修饰的是常量，指针指向不可以改，指针指向的值可以更改
+	int * const p2 = &amp;a;
+	//p2 = &amp;b; //错误
+	*p2 = 100; //正确
+
+    //const既修饰指针又修饰常量
+	const int * const p3 = &amp;a;
+	//p3 = &amp;b; //错误
+	//*p3 = 100; //错误
+
+	system(&quot;pause&quot;);
+
+	return 0;
+}
+
+</code></pre>
+<h3 id="空指针和野指针">空指针和野指针</h3>
+<h4 id="null-point">NUll Point</h4>
+<pre><code class="language-c++">int main() {
+
+	//指针变量p指向内存地址编号为0的空间
+	int * p = NULL;
+
+	//访问空指针报错 
+	//内存编号0 ~255为系统占用内存，不允许用户访问
+	cout &lt;&lt; *p &lt;&lt; endl;
+
+	system(&quot;pause&quot;);
+
+	return 0;
+}
+
+</code></pre>
+<h4 id="wild-point">Wild Point</h4>
+<pre><code class="language-c++">int main() {
+
+	//指针变量p指向内存地址编号为0x1100的空间
+	int * p = (int *)0x1100;
+
+	//访问野指针报错 
+	cout &lt;&lt; *p &lt;&lt; endl;
+
+	system(&quot;pause&quot;);
+
+	return 0;
+}
+
+</code></pre>
+<h4 id="数组作为函数展示">数组作为函数展示：</h4>
+<pre><code class="language-c++">void array_print(int arr[],int len){
+    for (int i = 0; i &lt; len; ++i) {
+        cout&lt;&lt;arr[i]&lt;&lt;endl;
+    }
+}
+
+void bubble_sort_(int * arr,int len){
+    for (int i = 0; i &lt; len; ++i) {
+        for (int j = i; j &lt; len; ++j) {
+            if (arr[i]&gt;=arr[j]){
+                int tmp=arr[j];
+                arr[j]=arr[i];
+                arr[i]=tmp;
+            }
+        }
+    }
+}
+int main(){
+    int arr[]={10,2,4,4,3,5,9,1,3};
+    bubble_sort_(arr,8);
+    array_print(arr,8);
+}
+</code></pre>
+<blockquote>
+<p>当数组名传入到函数作为参数时，被退化为指向首元素的指针</p>
+</blockquote>
+<h4 id="删除数组元素空间">删除数组元素空间</h4>
+<pre><code class="language-c++">int arr[] = new[10];
+delete[] arr;
+</code></pre>
+<blockquote>
+<p>内存发生取消和回收：</p>
+</blockquote>
+<pre><code class="language-c++">int  *a=new int [10];
+    cout&lt;&lt;a&lt;&lt;endl;
+    int *p=a;
+    delete[] a;
+    int *m=p;
+    cout&lt;&lt;p&lt;&lt;endl;
+    cout&lt;&lt;m&lt;&lt;endl;
+</code></pre>
+<h3 id="引用">引用</h3>
+<p>语法： 数据类型 &amp;别名 = 原名</p>
+<p>例子：</p>
+<pre><code class="language-c++">int a = 10;
+int b = 20;
+//int &amp;c; //错误，引用必须初始化
+int &amp;c = a; //一旦初始化后，就不可以更改
+c = b; //这是赋值操作，不是更改引用
+</code></pre>
+<h4 id="函数传参">函数传参：</h4>
+<pre><code class="language-c++">//1. 值传递
+void mySwap01(int a, int b) {
+	int temp = a;
+	a = b;
+	b = temp;
+}
+
+//2. 地址传递
+void mySwap02(int* a, int* b) {
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+//3. 引用传递
+void mySwap03(int&amp; a, int&amp; b) {
+	int temp = a;
+	a = b;
+	b = temp;
+}
+</code></pre>
+<p>引用传参：</p>
+<pre><code class="language-cpp">class RainyInteger {
+    friend ostream &amp;operator&lt;&lt;(ostream&amp; out,RainyInteger rainyInteger);
+public:
+    RainyInteger(){
+        //初始化数据：
+        this-&gt;rainy_num=0;
+    }
+     void speak(RainyInteger *r){
+        cout&lt;&lt;r-&gt;rainy_num&lt;&lt;endl;
+    }
+private:
+    int rainy_num;
+};
+main(){
+    RainyInteger integer;
+    integer.speak(&amp; integer); //传入引用而不是指针，否则报错
+}
+</code></pre>
+<h3 id="类">类</h3>
+<h4 id="注意事项">注意事项</h4>
+<blockquote>
+<p>在C++中实例化一个类不需要用new。也可以用new，但是区别是：不使用new，开辟栈空间，使用new开辟的空间为堆空间。这显然是因为程序员只操作堆空间的原因使然</p>
+</blockquote>
+<p><strong>与C语言结构体的区别</strong></p>
+<p>访问控制符是唯一区别，所有的结构体默认public，但是类则是private</p>
+<p><strong>类的构造函数，析构函数和拷贝构造函数</strong></p>
+<h4 id="静态变量和成员变量">静态变量和成员变量</h4>
+<blockquote>
+<p>静态变量语法：static 数据类型 变量名</p>
+<p>类里面：类::变量名</p>
+</blockquote>
+<blockquote>
+<p>成员变量语法：数据类型 变量名</p>
+</blockquote>
+<p>静态方法类似，同时在头文件里面定义的时候可以具有方法体</p>
+<p>代码如下：</p>
+<pre><code class="language-c++">People.h
+using namespace std;
+class People {
+public:
+    People(int age,string name){
+        this-&gt;age=age;
+        this-&gt;name=name;
+    }
+    //作用函数
+    void speak(People *p){
+        cout&lt;&lt;p-&gt;name&lt;&lt;endl;//相当于this.name
+        cout&lt;&lt;p-&gt;age&lt;&lt;endl;
+    }
+    int age;
+    string name;
+    static string defaultName;
+    static void defaultFunc();
+};
+</code></pre>
+<pre><code class="language-c++">People.cpp
+#include &quot;People.h&quot;
+//静态变脸
+string People::defaultName;
+
+void People::defaultFunc() {
+
+}
+</code></pre>
+<h4 id="构造函数constructor">构造函数（Constructor）</h4>
+<p>构造函数语法：类名(){}</p>
+<p>在定义有参构造函数后，不再提供无参构造函数</p>
+<p>#####析构函数（Destructor），通Java,可重载，释放内存时使用</p>
+<p>析构函数语法：~类名(){}</p>
+<ul>
+<li>构造函数，没有返回值也不写void</li>
+<li>函数名称与类名相同</li>
+<li>构造函数可以有参数，因此可以发生重载</li>
+<li>程序在调用对象时候会自动调用构造，无须手动调用,而且只会调用一次</li>
+</ul>
+<h4 id="拷贝构造函数">拷贝构造函数</h4>
+<blockquote>
+<p>如果属性有在堆区开辟的，一定要自己提供拷贝构造函数，防止浅拷贝带来的问题</p>
+</blockquote>
+<pre><code class="language-c++">//
+// Created by Rainy-Heights on 2023/10/27.
+//
+
+#ifndef OBJECT_C_STUDENT_H
+#define OBJECT_C_STUDENT_H
+
+#include &lt;iostream&gt;
+
+using namespace std;
+class Student {
+public:
+    Student(){
+        cout&lt;&lt;&quot;这是无构造函数&quot;&lt;&lt;endl;
+    }
+    Student(int age,string name){
+        cout&lt;&lt;&quot;这是有参构造函数&quot;&lt;&lt;endl;
+        _stu_age=new int [age];
+        _stu_name=name;
+    }
+    //拷贝构造 函数
+    Student(const Student &amp;student){
+        cout&lt;&lt;&quot;拷贝构造函数&quot;&lt;&lt;endl;
+        _stu_name=student._stu_name;
+        _stu_age=new int [*student._stu_age];//指向对象的值，这里还是实现了值的拷贝
+    }
+    ~Student(){
+        cout&lt;&lt;&quot;析构函数&quot;&lt;&lt;endl;
+    }
+
+public:
+    int *_stu_age;
+    string _stu_name;
+};
+
+
+#endif //OBJECT_C_STUDENT_H
+
+</code></pre>
+<blockquote>
+<p>==如果用户定义有参构造函数，c++不在提供默认无参构造==，但是会提供默认拷贝构造</p>
+<p>==如果用户定义拷贝构造函数，c++不会再提供其他构造函数==</p>
+</blockquote>
+<h4 id="this指针">this指针</h4>
+<p>成员函数访问时候的隐形的this指针变量</p>
+<p>this对于类来说就是自己的地址</p>
+<p>例如：</p>
+<pre><code class="language-c++">RainyInteger * getAddr(){
+        return this;
+    }
+</code></pre>
+<h3 id="友元">友元</h3>
+<p>相当于内部标志为friend即可访问私有成员</p>
+<ul>
+<li>全局函数作为友元：</li>
+</ul>
+<pre><code class="language-c++">class StrictBoy{
+        friend void func(Student *student);
+public:
+    StrictBoy(){
+        this-&gt;girlFriend=&quot;女朋友&quot;;
+        this-&gt;money=100;
+    }
+private:
+    String girlFriend;
+public:
+    int money;
+void func(StrictBoy * strictBoy){
+    cout&lt;&lt;strictBoy.girlFriend&lt;&lt;endl;//可以访问私有的变量了，牛头人既视感
+}    
+};
+</code></pre>
+<ul>
+<li>类作为友元</li>
+</ul>
+<pre><code class="language-c++">class Building;
+class goodGay
+{
+public:
+
+	goodGay();
+	void visit();
+
+private:
+	Building *building;
+};
+
+
+class Building
+{
+	//告诉编译器 goodGay类是Building类的好朋友，可以访问到Building类中私有内容
+	friend class goodGay;
+
+public:
+	Building();
+
+public:
+	string m_SittingRoom; //客厅
+private:
+	string m_BedRoom;//卧室
+};
+
+Building::Building()
+{
+	this-&gt;m_SittingRoom = &quot;客厅&quot;;
+	this-&gt;m_BedRoom = &quot;卧室&quot;;
+}
+
+goodGay::goodGay()
+{
+	building = new Building;
+}
+
+void goodGay::visit()
+{
+	cout &lt;&lt; &quot;好基友正在访问&quot; &lt;&lt; building-&gt;m_SittingRoom &lt;&lt; endl;
+	cout &lt;&lt; &quot;好基友正在访问&quot; &lt;&lt; building-&gt;m_BedRoom &lt;&lt; endl;
+}
+
+void test01()
+{
+	goodGay gg;
+	gg.visit();
+
+}
+
+int main(){
+
+	test01();
+
+	system(&quot;pause&quot;);
+	return 0;
+}
+
+</code></pre>
+<ul>
+<li>成员函数作为友元：</li>
+</ul>
+<pre><code class="language-c++">class Building;
+class goodGay
+{
+public:
+
+	goodGay();
+	void visit(); //只让visit函数作为Building的好朋友，可以发访问Building中私有内容
+	void visit2(); 
+
+private:
+	Building *building;
+};
+
+
+class Building
+{
+	//告诉编译器  goodGay类中的visit成员函数 是Building好朋友，可以访问私有内容
+	friend void goodGay::visit();
+
+public:
+	Building();
+
+public:
+	string m_SittingRoom; //客厅
+private:
+	string m_BedRoom;//卧室
+};
+
+Building::Building()
+{
+	this-&gt;m_SittingRoom = &quot;客厅&quot;;
+	this-&gt;m_BedRoom = &quot;卧室&quot;;
+}
+
+goodGay::goodGay()
+{
+	building = new Building;
+}
+
+void goodGay::visit()
+{
+	cout &lt;&lt; &quot;好基友正在访问&quot; &lt;&lt; building-&gt;m_SittingRoom &lt;&lt; endl;
+	cout &lt;&lt; &quot;好基友正在访问&quot; &lt;&lt; building-&gt;m_BedRoom &lt;&lt; endl;
+}
+
+void goodGay::visit2()
+{
+	cout &lt;&lt; &quot;好基友正在访问&quot; &lt;&lt; building-&gt;m_SittingRoom &lt;&lt; endl;
+	//cout &lt;&lt; &quot;好基友正在访问&quot; &lt;&lt; building-&gt;m_BedRoom &lt;&lt; endl;
+}
+
+void test01()
+{
+	goodGay  gg;
+	gg.visit();
+
+}
+
+int main(){
+    
+	test01();
+
+	system(&quot;pause&quot;);
+	return 0;
+}
+
+</code></pre>
+<h4 id="运算符重载">运算符重载：</h4>
+<p>作用：<strong>实现对类变量的自定义运算方法</strong></p>
+<p>可实现重载的运算符：</p>
+<ul>
+<li>加号运算符</li>
+<li>左移运算符</li>
+<li>递增运算符</li>
+<li>赋值运算符</li>
+<li>关系运算符</li>
+<li>函数调用运算符</li>
+</ul>
+<pre><code class="language-c++">//这里是表示对输出流里面的操作符实现重载
+ostream&amp; operator-(ostream&amp; out,Person&amp; p){
+out&lt;&lt;&quot;通过友元实现对私有变量的访问&quot;&lt;&lt;p.m_A&lt;&lt;p.m_B;
+}
+</code></pre>
+<p>表示的意义就是对符号进行了自定义</p>
+<p><strong>案例</strong></p>
+<h4 id="实现自己的数据类型">实现自己的数据类型</h4>
+<pre><code class="language-c++">雨山的整型数据
+
+class RainyInteger {
+    friend ostream &amp;operator&lt;&lt;(ostream&amp; out,RainyInteger rainyInteger);
+public:
+    RainyInteger(){
+        //初始化数据：
+        this-&gt;rainy_num=0;
+    }
+    //前置++操作
+    RainyInteger&amp; operator++(){
+        rainy_num++;
+        return *this;
+    }
+    //后自增操作：???
+    RainyInteger&amp; operator++(int){
+        RainyInteger tmp= *this;
+        rainy_num++;
+        return  tmp;
+    }
+     void speak(RainyInteger *r){
+        cout&lt;&lt;r-&gt;rainy_num&lt;&lt;endl;
+    }
+private:
+    int rainy_num;
+};
+</code></pre>
+<h3 id="继承">继承</h3>
+<blockquote>
+<p>语法：class 子类 : 继承方式 父类</p>
+</blockquote>
+<pre><code class="language-c++">class Father{
+    
+};
+class Child1: public Father;
+class Child2: private Father;
+class Child3: protected Father;
+</code></pre>
+<h4 id="构造和析构顺序">构造和析构顺序：</h4>
+<p>子类继承自父类之后，调用子的构造函数将会造成父类的构造函数的调用，析构函数则相反，因为清理先从最小的子类开始清理。</p>
+<h4 id="菱形继承问题">菱形继承问题</h4>
+<p>简而言之就是父类被多个子类继承，多个子类被某一个孙子类同时继承</p>
+<p>示意图：</p>
+<p><img src="img_2.png" alt="img_2.png"></p>
+<p>解决办法-&gt;虚继承 关键字：<strong>virtural</strong></p>
+<p>在基类的两个子类中继承基类时，使用virtual 关键字。虚继承基类。使得基类的属性成员只有一份。</p>
+<pre><code class="language-c++">class Animal
+{
+public:
+	int m_Age;
+};
+
+class Sheep : virtual public Animal {};
+class Tuo   : virtual public Animal {};
+class SheepTuo : public Sheep, public Tuo {};
+
+</code></pre>
+<h4 id="继承之后子类获得了什么">继承之后子类获得了什么？</h4>
+<p>公共变量和方法肯定是获得了。</p>
+<p>同时：</p>
+<blockquote>
+<p>父类中私有成员也是被子类继承下去了，只是由编译器给隐藏后访问不到</p>
+</blockquote>
+<h4 id="虚函数和纯虚析构">虚函数和纯虚析构</h4>
+
+</article>
+
+
+      
+        <div class="my-4">
+    
+    <a href="/tags/%E8%AF%AD%E8%A8%80/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 me-2 hover:text-eureka">#语言</a>
+    
+</div>
+      
+
+      
+
+
+
+      
+
+      
+  <div
+    class="-mx-2 mt-4 flex flex-col border-t px-2 pt-4 md:flex-row md:justify-between"
+  >
+    <div>
+      
+    </div>
+    <div class="mt-4 md:mt-0 md:text-right">
+      
+        <span class="text-primary-text block font-bold">下一篇</span>
+        <a href="/la/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="block">面试题</a>
+      
+    </div>
+  </div>
+
+
+      
+
+
+
+    </div>
+    
+
+    
+    
+  </div>
+
+  
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        hljs.highlightAll();
+      });
+    </script>
+
+          </div>
+        </div>
+      
+    </main>
+    <footer class="pl-scrollbar">
+      <div class="mx-auto w-full max-w-screen-xl"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2023 <a href="https://todreamr.github.com/">春江花朝秋月夜</a> and <a href="https://www.ruiqima.com/">MA Ruiqi</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>缓存 on 春江花朝秋月夜</title>
+    <link>/tags/%E7%BC%93%E5%AD%98/</link>
+    <description>Recent content in 缓存 on 春江花朝秋月夜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy; 2023 &lt;a href=&#34;https://todreamr.github.com/&#34;&gt;春江花朝秋月夜&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;MA Ruiqi&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Tue, 03 Oct 2023 20:31:04 +0800</lastBuildDate><atom:link href="/tags/%E7%BC%93%E5%AD%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis</title>
+      <link>/la/java/%E7%BC%93%E5%AD%98/</link>
+      <pubDate>Tue, 03 Oct 2023 20:31:04 +0800</pubDate>
+      
+      <guid>/la/java/%E7%BC%93%E5%AD%98/</guid>
+      <description>Redis学习： 通用命令 不要在主节点用：keys param 命令来查询，这查询速率很慢，单线程将会被阻塞 del param（可以是多个参数） :删除指定的key exists param(判断key是否存在) expire key time :设置有效期时间 ttl key :查看key的有效期
+String类型 最简单的Redis数据类型，value：string,int,float；最大空间不超过512M set key value get key
+Mset 批量 添加key-value
+Mget批量获取
+数值类型：incr ：让变量自增加一
+incrby num：按照步长增加
+setnx:不存在 key才可以添加这个key
+如何区分不同的key？ 利用层级结构来表明table，以后的大部分业务都是用层级结构来展现和布局的！
+Hash类型 哈希类型，也叫做散列，Hash的value是一个无须字典，类似于HashMap的结构。
+具有field这一个字段，这是不一样的。
+List类型 类似于 LinkedList(也就是双向链表)
+有序 元素可重复 插入删除快 查询速度一般 Lpush key element：向左侧插入元素 返回列表长度，相应的向右边：Rpush key element
+Lpop key:移除左侧第一个元素，没有则返回nil
+Blop/Brpop key times:阻塞队列的插入 ,加上阻塞时间
+如何用List来模拟栈？
+入口和出口一起。Lpush和Lpop
+模拟队列？
+入口和出口不在一起。Lpush和Rpop
+模拟阻塞队列？
+入口出口不在一边，取的时候用阻塞Brpop/Blpop
+Set类型 类似于HashSet，可以看作是value为null的hashMap。
+Sadd key member:添加一个或多个元素。
+Srem key member:删除元素
+Smembers：获取所有元素
+Sinter key1 key2:求取交集</description>
+    </item>
+    
+  </channel>
+</rss>
