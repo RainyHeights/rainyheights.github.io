@@ -33,12 +33,12 @@
 
 
 
-<link rel="stylesheet" href="cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/11.4.0.min.css%25!%28EXTRA%20string=base16/solarized-light%29"
+<link rel="stylesheet" href="cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/solarized-light.min.css%25!%28EXTRA%20string=11.4.0,%20string=base16/solarized-light%29"
    media="print"
   onload="this.media='all';this.onload=null" crossorigin>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"
+<script defer src="cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js%25!%28EXTRA%20string=11.4.0%29"
    crossorigin></script>
-  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/languages/dart.min.js"
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/dart.min.js%25!%28EXTRA%20string=11.4.0,%20string=dart%29"
      crossorigin></script>
 <link rel="stylesheet" href="/css/highlightjs.min.2958991528e43eb6fc9b8c4f2b8e052f79c4010718e1d1e888a777620e9ee63021c2c57ec7417a3108019bb8c41943e6.css" media="print" onload="this.media='all';this.onload=null">
 
@@ -104,7 +104,7 @@
     },
     "headline": "C\u002b\u002b | 春江花朝秋月夜","datePublished": "2023-10-27T20:52:20+08:00",
     "dateModified": "2023-10-27T20:52:20+08:00",
-    "wordCount":  802 ,
+    "wordCount":  816 ,
     "publisher": {
         "@type": "Person",
         "name": "春江花朝秋月夜",
@@ -756,6 +756,11 @@ private:
     int rainy_num;
 };
 </code></pre>
+<h4 id="内联函数inline">内联函数inline</h4>
+<pre><code class="language-c++"> inline int max(int a,int b){
+ 
+ }
+</code></pre>
 <h3 id="继承">继承</h3>
 <blockquote>
 <p>语法：class 子类 : 继承方式 父类</p>
@@ -793,6 +798,17 @@ class SheepTuo : public Sheep, public Tuo {};
 <p>父类中私有成员也是被子类继承下去了，只是由编译器给隐藏后访问不到</p>
 </blockquote>
 <h4 id="虚函数和纯虚析构">虚函数和纯虚析构</h4>
+<h2 id="虚函数的前提">虚函数的前提：</h2>
+<ul>
+<li>基类，派生类拥有原型相同的成员函数</li>
+<li>virtual关键字</li>
+</ul>
+<h2 id="虚析构函数">虚析构函数</h2>
+<p>-虚析构函数是为了解决基类指针指向派生类对象，并用基类的指针销毁派生类对象</p>
+<h2 id="纯虚函数">纯虚函数</h2>
+<ul>
+<li>纯虚函数没有函数体，其作用实在基类中为派生类保留一个函数接口，方便派生类根据需要对它实现，实现多态。</li>
+</ul>
 
 </article>
 
